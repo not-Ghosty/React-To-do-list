@@ -72,7 +72,7 @@ const Main = () => {
                   <br /> */}
                   <tr className={a.tasks}>
                     <td className={a.tasks}>{x.task}</td>
-                    <td>
+                    <td className={a.delbut}>
                       <button
                         className={a.delete}
                         onClick={() => {

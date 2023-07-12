@@ -34,6 +34,8 @@
   border: none;
   border-bottom: 4px solid rgb(172, 177, 196);
   width: 60%;
+  font-weight: 500;
+  color: rgb(197, 183, 172);
 }
 .form input::placeholder {
   font-weight: 500;
@@ -95,7 +97,18 @@ td {
   box-sizing: border-box;
   overflow: auto;
 }
+td:nth-child(1) {
+  width: 70%; /* Set the width of the first column to 70% */
+}
 
+td:nth-child(2) {
+  width: 30%; /* Set the width of the second column to 30% */
+}
+
+#head > td ~ td {
+  text-align: center;
+  padding-left: 0;
+}
 .delete > img {
   width: 20px;
   height: 20px;
@@ -110,12 +123,21 @@ td {
   background-color: rgb(249, 249, 249);
   font-weight: 600;
   max-width: 50%;
+  text-align: left;
+}
+#head > td {
+  padding-left: 20px;
 }
 .tasks {
   font-size: medium;
   padding: 10px;
+  padding-left: 20px;
   padding-right: 0;
   font-weight: 500;
+  text-align: left;
+}
+.delbut {
+  text-align: center;
 }
 .form input:target {
   border: none;
