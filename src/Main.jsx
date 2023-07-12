@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import a from "./main.module.css";
+import delicon from "./delete.png";
 
 const Main = () => {
   let [task, setTask] = useState("");
@@ -20,7 +21,7 @@ const Main = () => {
   let form = (e) => {
     e.preventDefault();
     if (task.length > 0) {
-      let payload = { task };
+      let payload = {task};
       axios.post(`http://localhost:5000/content`, payload);
       setTask("");
     } else {
@@ -33,40 +34,62 @@ const Main = () => {
   };
   return (
     <>
-      <div id={a.main}>
-        <form>
+      <div id={a.nav}>
+        <h1>TODO List</h1>
+        <form className={a.form}>
           <input
             type="text"
-            id={a.addfield}
-            placeholder="  Type next task"
+            placeholder="What would you like to do?"
             value={task}
             onChange={itemchange}
-            style={valid ? { borderColor: "red" } : {}}
+            style={valid ? {borderColor: "red"} : {}}
           />{" "}
-          <button type="submit" id={a.addbutton} onClick={form}>
-            Add item
+          <button type="submit" onClick={form}>
+            Add
           </button>
         </form>
+        <div id={a.list}>
+          <h2>Todo list</h2>
+          <table className={a.table}>
+            <tr id={a.head}>
+              <td>List</td>
+              <td>Close</td>
+            </tr>
+
+            {data.map((x) => {
+              return (
+                <>
+                  {/* <h1 id={a.task}>{x.task}</h1>{" "}
+                  <button
+                    id={a.delete}
+                    onClick={() => {
+                      deletethis(x.id);
+                    }}
+                  >
+                    {" "}
+                    <img src={delicon} alt="" />
+                  </button>{" "}
+                  <br /> */}
+                  <tr className={a.tasks}>
+                    <td className={a.tasks}>{x.task}</td>
+                    <td>
+                      <button
+                        className={a.delete}
+                        onClick={() => {
+                          deletethis(x.id);
+                        }}
+                      >
+                        {" "}
+                        <img src={delicon} alt="" />
+                      </button>
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
+          </table>
+        </div>
       </div>
-      <ul id={a.list}>
-        {data.map((x) => {
-          return (
-            <>
-              <h1 id={a.task}>{x.task}</h1>{" "}
-              <button
-                id={a.delete}
-                onClick={() => {
-                  deletethis(x.id);
-                }}
-              >
-                {" "}
-                X
-              </button>{" "}
-              <br />
-            </>
-          );
-        })}
-      </ul>
     </>
   );
 };
